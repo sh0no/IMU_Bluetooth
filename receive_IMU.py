@@ -1,6 +1,8 @@
 import serial
 import csv
+import time
 
+#pre_t = time.time()
 
 try:
     ser = serial.Serial('/dev/cu.M5stickC-ESP32SPP',9600,timeout=None)
@@ -38,6 +40,8 @@ while(True):
         break
 
     except Exception as e:
+        t = time.time()
         print(e)
+        #print(t-pre_t)
         ser.close()
         break
