@@ -5,6 +5,7 @@ BluetoothSerial bt;
 const char *bt_name = "M5stickC";
 
 
+
 float accX = 0.0F;
 float accY = 0.0F;
 float accZ = 0.0F;
@@ -18,6 +19,12 @@ float roll  = 0.0F;
 float yaw   = 0.0F;
 
 boolean state = false;
+
+
+/*
+unsigned long pre_t = 0;
+unsigned long t;
+*/
 
 void setup() {
   Serial.begin(115200);
@@ -37,6 +44,7 @@ void loop() {
   if(M5.BtnA.wasPressed()){
     state = !state;
     M5.Lcd.setCursor(40,40);
+    M5.Lcd.fillScreen(BLACK);
     if(state == true) {
       M5.Lcd.println("ON");
       bt.println("start");
@@ -45,7 +53,7 @@ void loop() {
       M5.Lcd.println("OFF");
       bt.println("end");
     }
-    delay(100);
+    //delay(100);
   }
   if (state == true){
       M5.IMU.getGyroData(&gyroX,&gyroY,&gyroZ);
@@ -54,13 +62,12 @@ void loop() {
       bt.printf("%5.2f %5.2f %5.2f\n", gyroX, gyroY, gyroZ);
       bt.printf("%5.2f %5.2f %5.2f\n", accX, accY, accZ);
       bt.printf("%5.2f %5.2f %5.2f\n", pitch, roll, yaw);
-
-      
-    /*bt.printf("GyroX GyroY GyroZ: %6.2f  %6.2f  %6.2f\n", gyroX, gyroY, gyroZ);
-      bt.printf("accX, accY, accZ: %5.2f   %5.2f   %5.2f\n", accX, accY, accZ);
-      bt.printf("Pitch Roll Yaw: %5.2f   %5.2f   %5.2f\n", pitch, roll, yaw);
+      /*
+      t = micros();
+      bt.printf("%lu\n", t-pre_t);
+      pre_t = t;
       */
-      delay(100);
+      //delay(100);
   }
  
 }
