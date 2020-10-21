@@ -59,9 +59,7 @@ void loop() {
       M5.IMU.getGyroData(&gyroX,&gyroY,&gyroZ);
       M5.IMU.getAccelData(&accX,&accY,&accZ);
       M5.IMU.getAhrsData(&pitch,&roll,&yaw);
-      bt.printf("%5.2f %5.2f %5.2f\n", gyroX, gyroY, gyroZ);
-      bt.printf("%5.2f %5.2f %5.2f\n", accX, accY, accZ);
-      bt.printf("%5.2f %5.2f %5.2f\n", pitch, roll, yaw);
+      bt.printf("%5.2f %5.2f %5.2f %5.2f %5.2f %5.2f %5.2f %5.2f %5.2f\n", gyroX, gyroY, gyroZ,accX, accY, accZ, pitch, roll, yaw);
       /*
       t = micros();
       bt.printf("%lu\n", t-pre_t);
