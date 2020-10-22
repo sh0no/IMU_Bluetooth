@@ -31,10 +31,10 @@ void setup() {
   bt.begin(bt_name);
   M5.begin();
   M5.IMU.Init();
-  M5.Lcd.setRotation(3);
+  M5.Lcd.setRotation(0);
   M5.Lcd.fillScreen(BLACK);
   M5.Lcd.setTextSize(3);
-  M5.Lcd.setCursor(40,40);
+  M5.Lcd.setCursor(20,80);
   M5.Lcd.println("OFF");
   
 }
@@ -43,7 +43,7 @@ void loop() {
   M5.update();
   if(M5.BtnA.wasPressed()){
     state = !state;
-    M5.Lcd.setCursor(40,40);
+    M5.Lcd.setCursor(20,80);
     M5.Lcd.fillScreen(BLACK);
     if(state == true) {
       M5.Lcd.println("ON");
